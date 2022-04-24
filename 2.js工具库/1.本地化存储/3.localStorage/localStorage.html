@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        属性及方法：
+        1. length       本地存储数据的数量
+        2. key()        通过索引找到存储的数据
+        3. getItem()    通过键名取到本地存储的数据
+        4. setItem()    设置一个本地存储数据
+        5. removetem()  删除一个本地存储数据
+        6. clear()      清空本地存储数据 
+        */
+        console.dir(Storage);
+        console.log(localStorage,sessionStorage);
+
+        localStorage.setItem('name','lby');
+        localStorage.setItem('age','18');
+        localStorage.setItem('gender','male');
+        localStorage.setItem('hobby','eat');
+        var color = ['red','green'];
+        localStorage.setItem('color',JSON.stringify(color));
+        console.log(JSON.parse(localStorage.getItem('color')));
+    </script>
+</body>
+</html>

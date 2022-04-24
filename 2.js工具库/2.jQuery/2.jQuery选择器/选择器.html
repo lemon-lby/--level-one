@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding-bottom: 1000px;
+        }
+
+        ul {
+            width: 500px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            padding: 200px;
+            margin-top: 10px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 基础选择器 -->
+    <ul id="list1">
+        <li>red</li>
+        <li class="red">red</li>
+        <li>red</li>
+        <li>red</li>
+        <li>red</li>
+    </ul>
+    <ul id="list2">
+        <li>red</li>
+        <li>red</li>
+        <li class="red">red</li>
+        <li>red</li>
+        <li>red</li>
+    </ul>
+    <p class="red">ppppppp</p>
+
+
+
+    <!-- 层级选择器 -->
+    <div>
+        <a href="#" class="link">链接</a>
+        <a href="#">链接</a>
+        <a href="#">链接</a>
+        <a href="#">链接</a>
+        <p>
+            <a href="#">链接</a>
+        </p>
+    </div>
+
+
+    <!-- 属性选择器 -->
+    <ul id="ulColor">
+        <li class="red">color</li>
+        <li title="blue">color</li>
+        <li title="css-1">color</li>
+        <li id="color1-green">color</li>
+        <li id="red-1color">color</li>
+        <li lang="encnhk">color</li>
+        <li lang="en cn">color</li>
+        <li class="cl" name="lby">color</li>
+    </ul>
+
+
+
+
+
+
+
+
+    <script src="./../jquery-3.6.0.js"></script>
+    <script>
+        /* 基础选择器 */
+        $('#list1').css('background', 'green');
+        $('.red').css('background', 'grey');
+        $('li').css('border', '1px solid pink')
+        // $('*').css('border','1px solid orange');
+        $('li,p').css('font-size', '20px');
+
+
+
+        /* 层级选择器 */
+        $('div a').css('color', 'green');
+        $('div>a').css('color', 'red');
+        $('div a.link + a').css('color', 'purple');
+        $('div a.link ~ a').css('color', 'blue');
+
+
+        /* 属性选择器 */
+        $('#ulColor li[class]').css('background', 'pink');
+        $('#ulColor li[title=blue]').css('background', 'grey');
+        $('#ulColor li[title!=blue]').css('background', 'yellow');
+        $('#ulColor li[title|=css]').css('background', 'darkgreen'); //前缀css  用css隔开
+        $('#ulColor li[id^=color]').css('background', 'lightblue'); //以属性值为开始 不需要用-隔开
+        $('#ulColor li[id$=color]').css('background', 'lightblue'); //以属性值为结尾
+        $('#ulColor li[lang*=cn]').css('background', 'olive'); //属性中包含cn字符串
+        $('#ulColor li[lang~=cn]').css('background', 'red'); //属性中包含cn单词 用空格隔开
+        $('#ulColor li[class=cl][name=lby]').css('background', 'teal');
+    </script>
+</body>
+
+</html>

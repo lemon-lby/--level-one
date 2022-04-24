@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const s1 = new Set();
+        console.log(s1);
+        const s2 = new Set([1,2,3,2,3,4,5,4,5]);
+        s2.add(6);  
+        s2.add(+0);
+        s2.add(-0);
+        // const s2 = new Set("asfdgfhghsdfd");
+        console.log(s2); 
+        for (const item of s2) {
+            console.log(item); 
+        }
+
+        s2.forEach(item=>{
+            console.log(item);
+        })
+    </script>
+</body>
+</html>

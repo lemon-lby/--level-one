@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+</head>
+<style>
+    *{       
+        margin: 0px auto;
+    }
+    .table{
+         width: 70%;
+         border-collapse: collapse;
+         color: burlywood;
+         font-weight: lighter;
+         text-align: center;
+    }
+    table caption {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: green;
+      }
+    table thead th,
+    table td{
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+            }
+    table th {
+        font-weight: lighter;
+        color: green;
+      }
+    table thead tr:first-of-type {
+        background-color: rgb(195, 232, 233);
+      }
+     table tbody tr:nth-of-type(even) {
+        background-color: rgb(241, 241, 225);
+      }
+       table tbody tr:hover {
+        background-color: rgb(223, 223, 223);
+        color: white;
+      }
+      table tfoot td {
+        border-bottom: none;
+        color: coral;
+        font-size: 1.2rem;
+        font-weight: bolder;
+      }
+      body div:last-of-type {
+        width: 70%;
+        margin: 10px auto;
+      }
+      body div:first-of-type button {       
+        float: right;
+        width: 120px;
+        height: 32px;
+        background-color: seagreen;
+        color: white;
+        border: none;       
+        cursor: pointer;
+      }
+      body div:first-of-type button:hover {
+        background-color: coral;
+        font-size: 1rem;
+      }
+</style>
+<body>
+    <table class="table">
+         <caption>购物车</caption>
+         <thead> 
+             <tr>
+                 <th>序号</th>
+                 <th>品名</th>
+                 <th>单价</th>
+                 <th>数量</th>
+                 <th>金额</th>
+             </tr>
+         </thead>
+         <colgroup>
+        <col width="50" />
+        <col width="250" />
+        <col width="70" />
+        <col width="60" />
+        <col width="70" />
+      </colgroup>
+         <tbody>
+           <tr>
+               <td>1</td>
+               <td>联想Thinkpad笔记本电脑</td>
+               <td>3566</td>
+               <td>1</td>
+               <td>3566</td>
+           </tr>
+           <tr>
+               <td>2</td>
+               <td>雷柏机械键盘套装</td>
+               <td>356</td>
+               <td>1</td>
+               <td>356</td>
+           </tr>
+           <tr>
+               <td>3</td>
+               <td>苹果MAC笔记本电脑</td>
+               <td>14500</td>
+               <td>1</td>
+               <td>14500</td>
+           </tr>
+           <tr>
+               <td>4</td>
+               <td>奥迪A8 V12运动版</td>
+               <td>1250000</td>
+               <td>1</td>
+               <td>1250000</td>
+           </tr>
+         </tbody>
+    </table>
+    <div>
+      <button>结算</button>
+    </div>
+</body>
+</html>

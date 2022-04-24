@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>拖拽效果</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+    *{margin:0; padding: 0;}
+    #box{width: 100px; height:100px; background-color: green; position:absolute; cursor:move;}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <script type="text/javascript">
+    // 设置cookie
+    function setCookie(name,value,continued){
+        var oDate = new Date();
+        oDate.setDate(oDate.getDate() + continued);
+        document.cookie = name + '=' + value + '; expires=' + oDate;
+    }
+ 
+    // 获取coojie
+    function getCookie(name){
+        var arr = document.cookie.split('; ');
+        for(var i=0; i<arr.length; i++){
+            var arr2 = arr[i].split('=');
+            if(arr2[0] == name){
+                return arr2[1];
+            }
+        }
+        return '';
+    };
+ 
+    // 删除cookie
+    function removeCookie(name){
+        setCookie(name,'1',-1);
+    }
+    window.onload = function(){
+        var oBox = document.getElementById('box');
+        var disX = 0;
+        var disY = 0;
+ 
+        var x = getCookie('x');
+        var y = getCookie('y');
+ 
+        if(x){
+            oBox.style.left = x + 'px';
+            oBox.style.top = y + 'px';
+        }
+        oBox.onmousedown = function(ev){
+            var e = ev||event;
+            disX = e.clientX - oBox.offsetLeft;        //鼠标按下位置与物体左侧距离
+            disY = e.clientY - oBox.offsetTop;        //鼠标按下位置与物体上侧距离
+ 
+            document.onmousemove = function(ev){
+                var e = ev||event;
+                var left = e.clientX - disX;
+                var top = e.clientY - disY;
+                // 限制左右的拖动范围
+                if(left < 0){
+                    left = 0;
+                }else if(left > document.documentElement.clientWidth - oBox.offsetWidth){
+                    left = document.documentElement.clientWidth - oBox.offsetWidth;
+                }
+                // 限制上下的拖动范围
+                if(top < 0){
+                    top = 0;
+                }else if(top > document.documentElement.clientHeight - oBox.offsetHeight){
+                    top = document.documentElement.clientHeight - oBox.offsetHeight;
+                }
+ 
+                oBox.style.left = left + 'px';
+                oBox.style.top = top + 'px';
+            }
+ 
+            document.onmouseup = function(){
+                document.onmousemove = null;
+                document.onmouseup = null;
+                // 当鼠标抬起时记录cookie位置
+                setCookie('x',oBox.offsetLeft,365);
+                setCookie('y',oBox.offsetTop,365);
+            }
+        }
+    }
+    </script>
+</body>
+</html>

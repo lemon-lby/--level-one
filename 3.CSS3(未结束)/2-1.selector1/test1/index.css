@@ -1,0 +1,38 @@
+/* E + F */
+/* 下一个满足条件的兄弟元素节点 */
+/* div+p {
+    background-color: red;
+}
+
+p+.demo {
+    background-color: blue;
+} */
+
+/* E~F */
+/* div~p {
+    background-color: green;
+} */
+
+
+
+
+/* a前后隔开 */
+div[data~="a"]{
+    background-color: red;
+}
+
+
+
+/* a作为开头或a后面跟个- */
+div[class|="a"]{
+    background-color: blue;
+}
+
+/* 以a为开头 */
+div[class^="a"]{}
+
+/* 以a为结尾 */
+div[class$="a"]{}
+
+/* 只要存在a */
+div[class*="a"]{}

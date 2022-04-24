@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: green;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        var manageCookie = {
+            //设置cookie
+            set: function (name, value, continued) {
+                // //expires   要求用户传入的是一个时间节点(函数默认规定传入的天数)
+                // // var endDate = new Date(); //过期时间点
+                // // endDate.setDate(endDate.getDate() + date);
+                // // document.cookie = name + '=' + value + '; expires=' + endDate;
+                // document.cookie = name + '=' + value + '; max-age=' + date; //要求用户传入的第三个参数为过期的秒数\]
+                var oDate = new Date();
+                oDate.setDate(oDate.getDate() + continued);
+                document.cookie = name + '=' + value + '; expires=' + oDate;
+
+
+            },
+            //移除cookie
+            remove: function (name) {
+                this.set(name, '', 0); //只需要把时间设置为0就可以了
+            },
+            //获取cookie
+            get: function (name) {
+                var cookies = document.cookie.split('; '); //'name=a; padding=30' -> ['name=a','padding=30']
+                for (var i = 0; i < cookies.length; i++) {
+                    //['name=a','padding=30'] -> ['name','a'],['padding','30']    
+                    var item = cookies[i].split('='); //['name','a']
+                    if (item[0] == name) {
+                        return item[1];
+                    }
+                }
+                // var arr = document.cookie.split('; ');
+                // for (var i = 0; i < arr.length; i++) {
+                //     var arr2 = arr[i].split('=');
+                //     if (arr2[0] == name) {
+                //         return arr2[1];
+                //     }
+                // }
+                // return '';
+            }
+        }
+
+
+
+
+
+
+
+
+        // 拖拽
+        var drag = {
+            init: function (dom) {
+                this.dom = dom;
+                this.bindEvent();
+
+                var l = manageCookie.get('newLeft');
+
+                var t = manageCookie.get('newTop');
+
+                this.dom.style.left = l ? l + 'px' : '100px';
+                this.dom.style.top = t ? t + 'px' : '100px';
+            },
+            bindEvent: function () {
+                this.dom.onmousedown = this.mouseDown.bind(this);
+            },
+            mouseDown: function (e) {
+                document.onmousemove = this.mouseMove.bind(this);
+                document.onmouseup = this.mouseUp.bind(this);
+
+                this.disX = e.clientX - this.dom.offsetLeft;
+                this.disY = e.clientY - this.dom.offsetTop;
+            },
+            mouseMove: function (e) {
+                this.newLeft = e.clientX - this.disX;
+                this.newTop = e.clientY - this.disY;
+
+                this.dom.style.left = this.newLeft + "px";
+                this.dom.style.top = this.newTop + "px";
+            },
+            mouseUp: function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+
+                //鼠标抬起的时候需要存储一下(cookie)一下此刻盒子的位置信息
+                manageCookie.set('newLeft', this.newLeft, 10000);
+                manageCookie.set('newTop', this.newTop, 10000); 
+
+            }
+        }
+        drag.init(document.getElementById("box"));
+    </script>
+</body>
+
+</html>

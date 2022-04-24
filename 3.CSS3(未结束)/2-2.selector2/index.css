@@ -1,0 +1,37 @@
+/* not */
+/* div:not(.test) {
+    background-color: red;
+} */
+
+div:not([class]) {
+    background-color: blue;
+}
+
+ul{
+    width: 300px;
+    border: 1px solid black;
+}
+li{
+    height: 50px;
+    margin: 0 5px;
+}   
+li:not(:last-of-type){
+    border-bottom: 1px solid black;
+}
+
+
+
+/* root */
+
+/* 根标签选择器  包括了html */
+:root{
+    background-color: green;
+}
+
+
+
+/* target */
+
+div:target{
+    border: 1px solid red;
+}

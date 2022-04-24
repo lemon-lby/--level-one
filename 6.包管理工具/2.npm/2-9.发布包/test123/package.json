@@ -1,0 +1,14 @@
+{
+  "name": "test123",
+  "version": "1.0.0",
+  "description": "this is test package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "lby <12345677@qq.com>",
+  "license": "MIT"
+}

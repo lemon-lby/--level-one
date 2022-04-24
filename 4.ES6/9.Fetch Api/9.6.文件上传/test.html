@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="" alt="" id="img1">
+    <input type="file" name="1" multiple id="adsa">
+    <button>上传</button>
+
+    <script>
+        async function upload() {
+            const inp = document.getElementById("adsa");
+            if (inp.files.length === 0) {
+                alert("选择要上传的文件");
+                return;
+            }
+            const formData = new FormData(); //构建请求体
+            formData.append("imagefile", inp.files[0])
+            const url = "http://101.132.72.36:5100/api/upload";
+            const resp = await fetch(url, {
+                method: "POST",
+                body: formData
+            });
+            const result = await resp.json();
+            return result;
+        }
+
+        document.querySelector("button").onclick = async function () {
+            const result = await upload();
+            var img = document.getElementById("img1");
+            img.src = result.path;
+        }
+    </script>
+</body>
+
+</html>

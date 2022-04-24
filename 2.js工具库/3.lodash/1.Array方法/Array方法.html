@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./../lodash.js"></script>
+    <script>
+        //chunk()     拆分区块
+        console.log(_.chunk(['a','b','c','d'],2));
+
+        //compact()   非假值元素
+        console.log(_.compact([0,1,2,false,'',3,null,NaN,undefined]));
+
+        //difference()      过滤掉第一个数组中的第二个数组中的数
+        console.log(_.difference([1,2,3,4],[1,2]));
+
+        // differenceBy()   返回一个过滤值后的新数组     第三个为迭代器
+        console.log(_.differenceBy([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor));
+
+        //.differenceWith()     第三个为比较器
+        var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+ 
+        console.log(_.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual));
+
+        //drop()    把数组的前n位切掉   删掉前n位
+        console.log(_.drop(['a','b','c','d'],2));
+        //dropRight()    把数组的后n位切掉
+        console.log(_.dropRight(['a','b','c','d'],2));
+        //dropWhile() 去除array中从起点开始到 predicate 返回假值结束部分
+        //dropRightWhile() 去除array中从末尾开始到 predicate 返回假值结束部分
+        
+
+        //take()    从array数组的起始元素开始提取n个元素。  提取前n位
+        console.log(_.take(['a','b','c','d'],2));
+        //takeRight()    与drop相反
+        console.log(_.dropRight(['a','b','c','d'],2));
+        //takeWhile()   与drop相反
+        //takeRightWhile()  与drop相反
+
+
+        // flatten()   减少嵌套深度
+        console.log(_.flatten(['a',['b',['c',['d']]]]));
+        // flattenDeep()   将array递归为一维数组。
+        console.log(_.flattenDeep(['a',['b',['c',['d']]]]));
+        //flattenDepth()    
+        console.log(_.flattenDepth(['a',['b',['c',['d']]]],2));
+
+
+
+
+        // intersection([arrays])   取交集
+        console.log(_.intersection(['a','b'],['b','c'],['d','b']));
+        
+        //union([arrays])   取并集
+        console.log(_.union([2], [1, 2]));
+
+        //xor([arrays])     删掉交集
+        console.log(_.xor(['a','b'],['b','c'],['d','b']));
+
+
+        //nth(array, [n=0])     获取array数组的第n个元素。如果n为负数，则返回从数组结尾开始的第n个元素。
+        var array = ['a', 'b', 'c', 'd'];
+        console.log(_.nth(array, 1));
+        console.log(_.nth(array, -2));  
+
+
+
+        //remove()
+        var array = ['a', 'b', 'c', 'd','e'];
+        _.remove(array,function(value,index,array){
+            return index>2;
+        });
+        console.log(array);
+
+
+        //without() 剔除所有给定值的新数组
+        var arr = ['a', 'b', 'c', 'd','e'];
+        console.log(_.without(arr,'b','c'));
+
+
+
+        //uniq()    去重
+        console.log(_.uniq([1,2,2,1]));
+
+
+
+        //zip()     索引值相同的凑到一块
+        console.log(_.zip(['小明','小红','小刚'],['男','女','男'],[11,12,13]));
+        //zipObject()   第一个数组中的值作为属性标识符（属性名），第二个数组中的值作为相应的属性值。第三个数组无效
+        console.log(_.zipObject(['小明','小红','小刚'],['男','女','男'],[11,12,13]));
+        // zipWith()    
+        _.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
+             return a + b + c;
+        });
+        //unzip()
+        console.log(_.unzip([['小明', '男', 11],['小红', '女', 12],['小刚', '男', 13]]));
+
+    </script>
+
+</body>
+</html>

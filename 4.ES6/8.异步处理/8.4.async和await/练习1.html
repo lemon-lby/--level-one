@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="list"></ul>
+    <script>
+        //获取所有英雄数据
+        async function getHeroes() {
+            return fetch('https://study.duyiedu.com/api/herolist').then((resp) =>
+                resp.json()
+            ).then((resp) => resp.data);
+        }
+
+
+        const ul = document.getElementById("list");
+        (async () => {
+            const data = await getHeroes();
+            const result = data.map(d => `<li>${d.cname}</li>`).join('');
+            ul.innerHTML = result;
+        })()
+    </script>
+</body>
+
+</html>

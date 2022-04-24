@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">发送请求</button>
+    <script></script>
+    <script>
+        document.cookie = 'name=lby';
+        document.cookie = 'name=lby; age=18'; //只能设置一次
+
+        //cookie属性
+        document.cookie = 'color=red; domain=127.0.0.1; path=/docs';
+
+
+
+
+        document.cookie = 'margin=20;expires=' + new Date(2208, 1, 1);
+
+
+
+        document.cookie = 'padding=30;max-age=1';
+
+
+        setTimeout(function () {
+            console.log(document.cookie);
+        }, 60);
+        setTimeout(function () {
+            console.log(document.cookie);
+        }, 5000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        //表示 创建一个观察者
+        function observer(target) {
+            const div = document.getElementById("container");
+            const proxy = new Proxy(target, {
+                set(target, prop, value) {
+                    Reflect.set(target, prop, value);
+                    render();   
+                },
+                get(target, prop) {
+                    return Reflect.get(target,prop);
+                },
+                enumerable: true
+            })
+            render();
+
+            function render() {
+                let html = "";
+                for (const prop of Object.keys(proxy)) {
+                    html += `<p><span>${prop}:</span><span>${proxy[prop]}</span></p>`;
+                }
+                div.innerHTML = html;
+
+            }
+            return proxy;
+        }
+
+        const target = {
+            a: 1,
+            b: 2
+        }
+        const ob = observer(target);
+    </script>
+</body>
+
+</html>

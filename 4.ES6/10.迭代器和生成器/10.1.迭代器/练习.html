@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createFeiboIterator() {
+            let perv1 = 1,
+                prev2 = 1,
+                n = 1;
+            return {
+                next() {
+                    let value;
+                    if (n <= 2) {
+                        value = 1
+                    } else {
+                        value = perv1 + prev2;
+                    }
+                    var result = {
+                        value,
+                        done: false
+                    }
+                    prev2 = perv1;
+                    perv1 = result.value;
+                    n++;
+                    return result;
+                }       
+            }
+        }
+        const iter = createFeiboIterator();
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./myMap.js"></script>
+    <script>
+        const map = new myMap([["a",3],["b",2],["c",3]]);
+        map.set("a",4);
+        console.log(map);
+        for (const item of map) {
+            console.log(item);
+        }
+
+        map.forEach((a1,a2,a3)=>{
+            console.log(a1,a2,a3);
+        })
+    </script>
+
+</body>
+
+</html>

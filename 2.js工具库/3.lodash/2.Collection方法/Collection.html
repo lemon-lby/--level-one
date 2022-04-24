@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./../lodash.js"></script>
+    <script>
+        //countBy()
+        console.log(_.countBy(['one', 'two', 'three'], 'length')); //    { '3': 2, '5': 1 }  三个字母的有两个，五个字母的有一个
+
+        //groupBy()
+        console.log(_.groupBy(['one', 'two', 'three'],
+            'length')); //    { '3': ['one', 'two'], '5': ['three'] } 三个字母的分别是。。。。五个字母的分别是。。。。
+
+        //invokeMap()
+        console.log(_.invokeMap([
+            [5, 1, 7],
+            [3, 2, 1]
+        ], 'sort')); //   用第二个参数的方法处理第一个参数
+        console.log(_.invokeMap([123, 456], String.prototype.split, '')); //    把第三个参数作为第二个参数方法的参数
+
+        //keyBy()
+        var array = [{
+                'dir': 'left',
+                'code': 97
+            },
+            {
+                'dir': 'right',
+                'code': 100
+            }
+        ];
+
+        console.log(_.keyBy(array, function (o) {
+            return String.fromCharCode(o.code);
+        }));
+
+
+
+        // orderBy()排序
+        var users = [{
+                'user': 'fred',
+                'age': 48
+            },
+            {
+                'user': 'barney',
+                'age': 34
+            },
+            {
+                'user': 'fred',
+                'age': 40
+            },
+            {
+                'user': 'barney',
+                'age': 36
+            }
+        ];
+        console.log(_.orderBy(users, 'age', 'asc'));
+        console.log(_.orderBy(users, 'user', 'desc'));
+
+
+
+        //sortBy()只能升序排
+        console.log(_.sortBy(users, function (o) {
+            return o.user;
+        }));
+
+
+        //partition()   拆分二维数组
+        var users = [{
+                'user': 'barney',
+                'age': 36,
+                'active': false
+            },
+            {
+                'user': 'fred',
+                'age': 40,
+                'active': true
+            },
+            {
+                'user': 'pebbles',
+                'age': 1,
+                'active': false
+            }
+        ];
+        console.log(_.partition(users, function (o) {
+            return o.active;
+        }));
+
+
+
+        //reject()
+        var users = [{
+                'user': 'barney',
+                'age': 36,
+                'active': false
+            },
+            {
+                'user': 'fred',
+                'age': 40,
+                'active': true
+            }
+        ];
+        console.log(_.reject(users, function (o) {
+            return o.active;
+        }))
+
+
+
+
+        //sample()  随机数据
+        console.log(_.sample(['a', 'b', 'c', 'd', 'e']));
+        //sampleSize()
+        console.log(_.sampleSize(['a', 'b', 'c', 'd', 'e'], 2));
+
+
+
+        //shuffle()创建一个被打乱值的集合
+        console.log(_.shuffle(['a', 'b', 'c', 'd', 'e']));
+
+
+        //size()
+        console.log(_.size(['a', 'b', 'c', 'd', 'e']),
+                    _.size({a:1,b:2}),
+                    _.size('lby')
+        );
+
+
+        //
+    </script>
+</body>
+
+</html>

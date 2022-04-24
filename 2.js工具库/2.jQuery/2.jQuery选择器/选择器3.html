@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding-bottom: 1000px;
+        }
+
+        ul {
+            width: 500px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            padding: 200px;
+            margin-top: 10px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 内容过滤选择器 -->
+    <div id="content">LBY</div>
+    <div></div>
+    <div id="has">
+        <div>
+            <p>段落</p>
+        </div>
+    </div>
+    <div>
+        <h1 id="title">大标题</h1>
+    </div>
+
+
+
+    <!-- 表单过滤选择器 -->
+    <input type="button" value="按钮1">
+    <button>按钮2</button>
+    <div id="sex">
+        <input type="checkbox">男
+        <input type="checkbox">女
+    </div>
+    <div>
+        <input type="checkbox" checked>男
+        <input type="checkbox">女
+    </div>
+
+
+
+
+
+    <script src="./../jquery-3.6.0.js"></script>
+    <script>
+        /* 内容过滤选择器 */
+        $('#content:contains(LBY)').css('color', 'blue');
+        $('div:empty').css({ 
+            width: '100px',
+            height: '100px',
+            background: 'blue'
+        });
+        $('#has:has(p)').css('border', '1px solid red');
+        $('#title:parent').css('border', '1px solid #f00');
+
+
+
+
+        /* 表单过滤选择器 */
+        $(':button').css('border','2px solid red');//选择到所有的按钮
+        $('#sex input:checkbox').wrap('<span></span>').parent().css('border','1px solid purple');
+        $(':checked').wrap('<span></span>').parent().css('border','1px solid blue')
+
+    </script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

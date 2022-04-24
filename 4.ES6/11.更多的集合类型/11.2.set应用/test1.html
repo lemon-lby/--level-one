@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //求两个数组的并集、交集、差集  (不能出现重复项)，得到的结果是一个新数组
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = [3, 4, 5, 6, 7];
+
+        //并集
+        const s = new Set(arr1.concat(arr2));
+        const result = [...s];
+        console.log("并集", result);
+
+        //交集
+        const s1 = new Set(arr1);
+        const s2 = new Set(arr2);
+        const cross = [...s1].filter(item => arr2.indexOf(item) >= 0);
+        console.log("交集", cross);
+
+        //差集
+        // console.log("差集", [...s].filter(item => arr1.indexOf(item) >= 0 && arr2.indexOf(item) < 0 || arr2.indexOf(
+        //     item) >= 0 && arr1.indexOf(item) < 0));
+        console.log("差集", [...s].filter(item => cross.indexOf(item) < 0));
+    </script>
+</body>
+
+</html>

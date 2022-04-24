@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "postcss css/source.pcss -o css/out.css -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "postcss": "^8.4.12",
+    "postcss-cli": "^9.1.0",
+    "postcss-preset-env": "^7.4.3"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%"
+  ]
+
+}

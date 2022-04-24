@@ -1,0 +1,1 @@
+(()=>{"use strict";(async function(){return await fetch("/api/local").then((t=>t.json())).then((t=>t.data))})().then((t=>console.log(t)))})();

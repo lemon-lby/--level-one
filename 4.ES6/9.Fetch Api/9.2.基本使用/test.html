@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>得到所有省份</button>
+    <script>
+        async function getProvinces() {
+            const url = "	https://bird.ioliu.cn/v1";
+            // const config = {
+            //     method: "POST",
+            // }
+            // try {
+            //     const resp = await fetch(url, config)
+            //     console.log(resp);
+            // } catch (error) {
+            //     console.log(error)
+            // }
+                const resp = await fetch(url);
+                // const result = await resp.text();
+                const result = await resp.json();
+                console.log(result);
+        }
+
+        document.querySelector("button").onclick = function () {
+            getProvinces();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./../lodash.js"></script>
+    <script>
+        //defer()推迟调用函数
+        _.defer(function (text) {
+            console.log(text);
+        }, '第二次事件循环');
+        console.log('第一次');
+
+
+        //delay()延迟 wait 毫秒后调用 func
+        _.delay(function (text) {
+            console.log(text);
+        }, 1000, '延迟一秒执行');
+
+
+
+        //flip()    创建一个函数，调用func时候接收翻转的参数。
+        function fn1() {
+            console.log(arguments);
+        }
+        fn1 = _.flip(fn1);
+        fn1(1, 2, 3);
+
+
+        //negate()创建一个针对断言函数 func 结果取反的函数
+        function fn2(n) {
+            return n % 2 == 0;
+        }
+        console.log(_.filter([1,2,3,4,5,6],_.negate(fn2)));
+
+
+        //once()    创建一个只能调用 func 一次的函数。 重复调用返回第一次调用的结果
+        function fn3(){
+            console.log('fn3');
+        }
+        var newFn3 = _.once(fn3);
+        newFn3();
+        newFn3();//只执行一次
+    </script>   
+</body>
+
+</html>

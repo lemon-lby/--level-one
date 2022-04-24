@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src='./../lodash.js'></script>
+    <script>
+        //castArray()强制转数组
+        console.log(
+            _.castArray('a'),
+            _.castArray({
+                a: 1,
+                b: 2
+            }),
+        );
+
+
+        //clone()浅拷贝
+        var obj1 = {
+            a: 1,
+            b: {
+                c: 2
+            }
+        };
+        var obj2 = _.clone(obj1);
+        console.log(obj1, obj2);
+        obj2.b.c = 3;
+        console.log(obj1, obj2);
+
+
+        //cloneDeep(value)深拷贝
+        var obj3 = _.cloneDeep(obj1);
+        obj3.b.c = 4;
+        console.log(obj1, obj3);
+
+
+
+        //conformsTo()      判断对象是否满足第二个参数的条件
+        var object = {
+            'a': 1, 
+            'b': 2
+        };
+        console.log(_.conformsTo(object, {
+            'b': function (n) {
+                return n > 1
+            }
+        }));
+
+        //eq()  判断两个数是否相等
+        console.log(
+            _.eq(12, 12),
+            _.eq(NaN,NaN),
+            _.eq({},{})
+        );
+
+        //gt()  第一个参数是否大于第二个参数
+        //gte() 大于等于
+        //lt()  小于
+        //lte() 小于等于
+
+
+        
+    </script>
+</body>
+
+</html>

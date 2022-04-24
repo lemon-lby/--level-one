@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //依次得到斐波拉契数列前n位的值
+
+
+        function createFeiboIterator() {
+            let prev1 = 1,
+                prev2 = 1, //当前位置的前一位和前二位
+                n = 1; //当前是第一位
+            return {
+                next() {
+                    let value;
+                    if (n <= 2) {
+                        value = 1;
+                    } else {
+                        value = prev1 + prev2;
+                    }
+                    const result = {
+                        value,
+                        done: false
+                    }
+                    prev2 = prev1;
+                    prev1 = result.value;
+                    n++;
+                    return result;
+                }
+
+            }
+
+        }
+
+        const iter = createFeiboIterator();
+    </script>
+</body>
+
+</html>

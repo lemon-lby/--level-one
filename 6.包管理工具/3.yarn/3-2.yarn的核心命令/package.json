@@ -1,0 +1,14 @@
+{
+  "name": "chapter3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index",
+    "abc": "node index"
+  },
+  "devDependencies": {
+    "mocha": "^9.2.2"
+  },
+  "dependencies": {}
+}

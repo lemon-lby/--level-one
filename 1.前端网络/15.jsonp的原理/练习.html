@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var $ = {
+            ajax: function (options) {
+                var url = options.url;
+                var type = options.type;
+                var dataType = options.dataType;
+                var targetProtocol = "";
+                var targetHost = "";
+                //获取目标url的域
+                if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
+                    var targetUrl = new URL(url);
+                    targetProtocol = targetUrl.protocol;
+                    targetHost = targetUrl.host;
+                } else {
+                    targetProtocol = location.protocol;
+                    targetHost = location.host;
+                }
+                //判断同源前先确定dataType是jsonp
+                if (dataType === "jsonp") {
+                    //判断是否同源
+                    if (location.protocol === targetProtocol && location.host === targetHost) {
+                        //同源 正常的ajax
+                    } else {
+                        //不同源，首先创建一个script标签
+                        var script = document.createElement("script");
+                        //再创建一个随机的callback名字
+                        var callback = "cb" + Math.floor(Math.random() * 1000000);
+                        //同时创建一个这个名字的方法
+                        window[callback] = options.success;
+                        if (url.indexOf("?") > 0) {
+                            //说明已经有参数了
+                        } else {
+                            //没有参数
+                            script.src = targetUrl + "?callback=" + callback;
+                        }
+
+                        document.head.appendChild(script);  
+                    }
+                }
+
+
+            }
+        }
+        $.ajax({
+            url: "http://developer.duyiedu.com/edu/testJsonp",
+            type: "get",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    </script>
+</body>
+
+</html>

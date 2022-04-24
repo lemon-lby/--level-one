@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding-bottom: 1000px;
+        }
+
+        .red {
+            background: red;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .active {
+            background: greenyellow;
+        }
+
+        .css {
+            border: 2px solid #000;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 操作class -->
+    <div class="setClass">
+        <ul>
+            <li>red</li>
+            <li class="green blue">green</li>
+            <li class="red green">blue</li>
+        </ul>
+        <p class="active">点击切换class</p>
+    </div>
+    <hr>
+
+
+    <!-- 插入元素 内部插入 -->
+    <div class="insideAdd">
+        <p>在内部插入元素</p>
+    </div>
+    <hr>
+
+
+    <!-- 插入元素 外部插入 -->
+    <div class="outsideAdd">
+        <h2>在外部插入元素</h2>
+    </div>
+    <hr>
+
+    <!-- 插入元素 外部插入 -->
+    <div class="outsideAdd">
+        <h2>在外部插入元素</h2>
+    </div>
+    <hr>
+
+    <!-- 插入元素，html与text方法 -->
+    <div class="htmlText">
+        <p>html与text方法</p>
+    </div>
+    <hr>
+
+
+
+    <!-- 包裹元素 -->
+    <div class="wrap">
+        <span>red</span>
+        <span>green</span>
+        <span>blue</span>
+    </div>
+    <hr>
+
+
+    <!-- 删除元素 -->
+    <div class="del">
+        <div class="title">标题</div>
+        <ul>
+            <li>red</li>
+            <li>green</li>
+            <li>blue</li>
+        </ul>
+        <div class="end">底部</div>
+    </div>
+    <hr>
+
+
+
+    <!-- 克隆与替换元素 -->
+    <div class="clone">
+        <p>这是一段要被clone的文字</p>
+        <h2 class="replaceAll">这是要主动替换的文字</h2>
+        <div class="name1">aaa</div>
+        <div class="name2">bbb</div>
+        <h2 class="replaceWith">这是要被动替换的文字</h2>
+    </div>
+    <hr>
+
+
+
+    <!-- 属性操作，通用属性操作 -->
+    <div class="attr">
+        <img src="./dom.png" alt="" lby="liu">
+        <input type="text" value="这是一个正经的输入框">
+    </div>
+
+
+
+    <!-- 属性操作-css类属性操作 -->
+    <div class="css">
+        <h2></h2>
+        <p></p>
+        <div></div>
+    </div>
+
+
+
+
+    <script src="./../jquery-3.6.0.js"></script>
+    <script>
+        /* 操作class */
+        $('.setClass li:first').addClass('red');
+        $('.setClass li:eq(1)').removeClass('green');
+        console.log(
+            $('.setClass li:last').hasClass('green')
+        );
+        $('.setClass p').click(function () {
+            $(this).toggleClass();
+        })
+
+
+        /* 插入元素，内部插入 */
+        $('.insideAdd').append('<h2>append方法插入</h2>');
+        $('.insideAdd').append($('.insideAdd p'));
+        $('<h2>appendTo方法插入</h2>').appendTo($('.insideAdd'));
+        $('.insideAdd').prepend('<h2>prepend方法插入</h2>');
+        $('<h2>prependTo方法插入</h2>').prependTo('.insideAdd');
+
+
+        /* 插入元素，外部插入 */
+        $('.outsideAdd h2').after('<p>after方法添加到h2后面</p>');
+        $('<p>insertAfter方法添加到h2后面</p>').insertAfter($('.outsideAdd h2'));
+        $('.outsideAdd h2').before('<p>before方法添加到h2前面</p>');
+        $('<p>insertBefore方法添加到h2前面</p>').insertBefore($('.outsideAdd h2'));
+
+
+
+        /* 插入元素，html与text方法 */
+        console.log($('.htmlText').html());
+        $('.htmlText').html('<h2>这是html方法添加的标题</h2><p>这是html方法添加的内容</p>');
+        console.log($('.htmlText').text());
+        $('.htmlText').text('<h2>这是text方法添加的标题</h2><p>这是<em>text</em>方法添加的内容</p>');
+
+
+        /* 包裹元素 */
+        $('.wrap span').wrap('<li>');
+        $('.wrap li').wrapAll('<ul>');
+        $('.wrap span').wrapInner('<strong>');
+        $('.wrap li').unwrap(); //删除父级
+
+
+
+        /* 删除元素 */
+        // $('.del .title').remove();
+        $('div').remove('.title');
+        $('.del ul').empty(); //清空所有子元素
+
+        $('.del .end').click(function () {
+            alert('1');
+        });
+        var end = $('.del .end').detach();
+        setTimeout(function () {
+            $('.del').append(end);
+        }, 1000);
+
+
+
+
+        /* 克隆与替换元素 */
+        $('.clone p').click(function () {
+            alert("2");
+        });
+        $('.clone p').clone(true).appendTo('.clone');
+
+        $('<h3>使用replaceAll方法主动替换</h3>').replaceAll('.clone .replaceAll');
+        $('.clone .name2').replaceAll('.clone .name1');
+        $('.clone .replaceWith').replaceWith('<h3>使用replaceWith方法被动替换</h3>');
+
+
+
+
+        /* 属性操作，通用属性操作 */
+        console.log($('.attr img').attr('src')); //attr获取属性(只获取第一个元素身上的属性)
+        $('.attr img').attr('title', '精灵球'); //attr添加属性(会把属性添加到每一个元素身上)
+        $('.attr img').attr({
+            class: 'delicious',
+            alt: '美食',
+        }); //同时设置多个属性
+        console.log($('.attr img').prop('src')); //prop取到的是图片的绝对地址    attr取到的是相对地址
+        console.log($('.attr img').attr('lby'), $('.attr img').prop('lby'));
+        $('.attr img').prop({
+            id: 'food',
+            lby: 'liuliu' //自定义的属性prop并没有添加到dom标签身上，但他会添加到dom对象身上
+        });
+        $('.attr img').removeAttr('lby');
+        $('.attr img').removeProp('id'); //删除的是dom对象身上的属性，并不是dom标签身上的属性
+
+        $('.attr img').prop('index', 5);
+        console.log($('.attr img').prop('index')); //说明这条属性添加到dom对象身上了
+        $('.attr img').removeProp('index');
+        console.log($('.attr img').prop('index')); //removeProp是删除DOM对象身上的属性
+
+
+        console.log($('.attr input').val()); //取
+        $('.attr input').val('这不是一个输入框'); //改
+
+
+
+        /* 属性操作-css类属性操作 */
+        console.log(
+            $('.css').css('border'),
+            $('.css').css('height')
+        );
+        $('.css h2').css('width', '200px').css('height', '100px').css('background', '#ccc').text('插入一个标题');
+        $('.css h2').css({
+            color:'green',
+            fontSize:'30px',
+            'line-height':'100px'
+        });
+        $('.css p').css({
+            width:'200px',
+            height:'200px',
+            padding:'20px',
+            margin:'20px auto',
+            border:'2px solid black'
+        });
+        console.log(
+            $('.css p').width(),
+            $('.css p').height(),
+            $('.css p').innerWidth(),
+            $('.css p').innerHeight(),
+            $('.css p').outerWidth(),
+        );
+        $('.css p').width(300).height(100).innerWidth(400).outerWidth(500);
+        $('.css').css('position','relative');
+        $('.css div').css({
+            width:'100px',
+            height:'100px',
+            background:'green',
+            position:'absolute',
+            left:'100px',
+            top:'200px'
+        });
+        console.log(
+            $('.css div').offset().left,
+            $('.css div').offset().top,//offset相对于document
+        );
+        $('.css div').offset({
+            left:200,
+            top:1800
+        });
+
+        console.log(
+            $('.css div').position().left,
+            $('.css div').position().top,//position相对于有定位的父级
+        );
+
+        console.log(
+            $(document).scrollTop(),
+            $(document).scrollLeft(),
+        );
+
+        setTimeout(function(){
+            $(document).scrollTop(300)
+        },2000)
+    </script>
+
+
+
+
+</body>
+
+</html>

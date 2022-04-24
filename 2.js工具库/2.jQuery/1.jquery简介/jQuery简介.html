@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./../jquery-3.6.0.js"></script>
+    <script>
+        console.log(jQuery);
+        console.log($ === jQuery);
+
+        $(document).ready(function () {
+            var box = document.getElementById('box');
+            console.log(box);
+        });
+        $().ready(function () {
+            var box = document.getElementById('box');
+            console.log(box);
+        });
+        $(function () {
+            var box = document.getElementById('box');
+            console.log(box);
+        });
+        $(document).ready(function () {
+            console.log('ready完成了');
+        });
+        window.onload = function () {
+            console.log('load完成了');
+        };
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('dom内容加载完毕');
+        })
+    </script>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <div id="box"></div>
+    <img src="http://www.google.com" alt="">
+    <ul id="ulID" class="ulClass">
+        <li>red</li>
+        <li>green</li>
+        <li name="white">white</li>
+    </ul>
+    <p class="text"></p>
+    <h1>大标题</h1>
+    <script>
+        //原生js写法
+        var btn = document.getElementById('btn');
+        btn.onclick = function(){
+            var div = document.createElement('div');
+            div.style.width = '100px';
+            div.style.height = '100px';
+            div.style.background = 'green';
+            document.body.appendChild(div);
+        }
+
+
+        //jQuery写法
+        $('#btn').click(function(){
+            $('div').css({
+                width:'100px',
+                height:'100px',
+                background:'red'
+            }).appendTo('body');
+        });
+
+
+        //强大的选择器
+        var li = $('ul li:nth-child(1');
+        var li = $('#ulID li:first-child');
+        var li = $('.ulClass li:first-child + li');
+        var li = $('li[name=white]');
+        li.css('background','black');
+
+
+
+        //链式操作
+        $('.text').html('大苏打').css('border','1px solid #000').width(200).height(200).css('background','black');
+
+        //原生js获取到的对象与jQuery取到的对象做对比
+        var h1  = document.querySelector('h1');
+        h1.style.color = 'red';//原生的对象不能使用jQuery的方法
+
+        var $h1 = $('h1');
+        $h1.css('color','green');//jQuery对象也不能使用原生方法
+
+        console.log(h1===$h1);//false
+        console.log(h1);
+        console.log($h1);
+
+        //原生转jQuery
+        $(h1).css('color','yellow');    
+        //jQuery转原生
+        $h1[0].style.color = 'blue';    
+    </script>
+
+</body>
+
+</html>
